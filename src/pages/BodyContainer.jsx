@@ -6,6 +6,9 @@ import {
   GoogleApiWrapper,
   Polygon,
 } from "google-maps-react";
+import districts from "./districts.json";
+import { odishaBounds } from "./locations";
+
 const YOUR_GOOGLE_API_KEY_GOES_HERE = "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo";
 //sample API key AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo to be used lightly
 
@@ -14,15 +17,26 @@ class BodyContainer extends Component {
   constructor(props) {
     super(props);
     this.onMarkerClick = this.onMarkerClick.bind(this);
+    this.state = {
+      activeMarker: {},
+      selectedPlace: {},
+      showingInfoWindow: false,
+    };
   }
-  onMarkerClick(props, marker, e) {
-    console.log(
-      "🚀 ~ file: BodyContainer.jsx:13 ~ BodyContainer ~ onMarkerClick ~ props, marker, e:",
-      { props },
-      { marker },
-      { e }
-    );
-  }
+
+  onMarkerClick = (props, marker) =>
+    this.setState({
+      activeMarker: marker,
+      selectedPlace: props,
+      showingInfoWindow: true,
+    });
+
+  onMarkerClick = (props, marker) =>
+    this.setState({
+      activeMarker: marker,
+      selectedPlace: props,
+      showingInfoWindow: true,
+    });
   render() {
     console.log("this.props", this.prop);
     const givenPosition = {
@@ -32,34 +46,10 @@ class BodyContainer extends Component {
       lng: 84.7417494,
     };
 
-    const odishaBounds = [
-      {
-        lat: 22.5,
-        lng: 87.5,
-      },
-      {
-        lat: 22.5,
-        lng: 81.2,
-      },
-
-      {
-        lat: 18.0,
-        lng: 81.2,
-      },
-      {
-        lat: 18.0,
-        lng: 87.5,
-      },
-    ];
-
     var bounds = new this.props.google.maps.LatLngBounds();
     for (var i = 0; i < odishaBounds.length; i++) {
       bounds.extend(odishaBounds[i]);
     }
-    console.log(
-      "🚀 ~ file: BodyContainer.jsx:49 ~ BodyContainer ~ render ~ bounds:",
-      bounds
-    );
 
     return (
       <div>
@@ -70,12 +60,14 @@ class BodyContainer extends Component {
           initialCenter={givenPosition}
           bounds={bounds}
         >
-          <Marker
-            title={"The marker`s title will appear as a tooltip."}
-            onClick={this.onMarkerClick}
-            name={"Current location"}
-            position={givenPosition}
-          />
+          {districts.map((district) => (
+            <Marker
+              title={district.name}
+              name={district.name}
+              position={{ lat: district.lat, lng: district.lng }}
+              onClick={this.onMarkerClick}
+            />
+          ))}
           <Polygon
             paths={odishaBounds}
             strokeColor="#0000FF"
@@ -84,8 +76,13 @@ class BodyContainer extends Component {
             fillColor="red"
             fillOpacity={0.35}
           />
-          <InfoWindow onClose={this.onInfoWindowClose}>
-            <div>{<h1>Hello</h1>}</div>
+
+          <InfoWindow
+            marker={this.state.activeMarker}
+            onClose={this.onInfoWindowClose}
+            visible={this.state.showingInfoWindow}
+          >
+            <small>{this.state.selectedPlace.name}</small>
           </InfoWindow>
         </Map>
       </div>
