@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  Map,
-  InfoWindow,
-  Marker,
-  GoogleApiWrapper,
-  Polygon,
-} from "google-maps-react";
+import { Map, Marker, GoogleApiWrapper, Circle } from "google-maps-react";
 import districts from "./districts.json";
 import { odishaBounds } from "./locations";
 
@@ -62,28 +56,24 @@ class BodyContainer extends Component {
         >
           {districts.map((district) => (
             <Marker
-              title={district.name}
-              name={district.name}
-              position={{ lat: district.lat, lng: district.lng }}
+              title={district.district}
+              name={district.district}
+              position={{ lat: district.latitude, lng: district.longitudes }}
               onClick={this.onMarkerClick}
             />
           ))}
-          <Polygon
-            paths={odishaBounds}
-            strokeColor="#0000FF"
-            strokeOpacity={0.8}
-            strokeWeight={2}
-            fillColor="red"
-            fillOpacity={0.35}
-          />
 
-          <InfoWindow
-            marker={this.state.activeMarker}
-            onClose={this.onInfoWindowClose}
-            visible={this.state.showingInfoWindow}
-          >
-            <small>{this.state.selectedPlace.name}</small>
-          </InfoWindow>
+          {districts.map((district) => (
+            <Circle
+              center={{ lat: district.latitude, lng: district.longitude }}
+              strokeColor={district.color}
+              strokeOpacity={0.8}
+              strokeWeight={0.8}
+              fillColor={district.color}
+              fillOpacity={0.35}
+              radius={district.population_density * 80}
+            />
+          ))}
         </Map>
       </div>
     );
@@ -91,6 +81,6 @@ class BodyContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  // apiKey: YOUR_GOOGLE_API_KEY_GOES_HERE,
+  apiKey: YOUR_GOOGLE_API_KEY_GOES_HERE,
   // LoadingContainer: LoadingContainer,
 })(BodyContainer);
