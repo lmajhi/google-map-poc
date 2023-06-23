@@ -50,7 +50,7 @@ class BodyContainer extends Component {
         <Map
           style={{ margin: 20, width: "70vw", height: "80vh" }}
           google={this.props.google}
-          zoom={10}
+          zoom={6}
           initialCenter={givenPosition}
           bounds={bounds}
         >
