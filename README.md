@@ -1,4 +1,5 @@
 # google-map-poc
 latest screenshot
+![image](https://github.com/lmajhi/google-map-poc/assets/30113190/2bc11c79-9ac1-4d79-aca6-7a3252aa0547)
 
-![image](https://github.com/lmajhi/google-map-poc/assets/30113190/38bce72f-214d-4bb3-ae4c-1b3884d264b5)
+
