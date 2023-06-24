@@ -1,14 +1,24 @@
 import * as React from "react";
+import { Typography, Menu } from "antd";
+const { Text } = Typography;
 export default function AppHeader() {
   return (
     <div
       style={{
         flexGrow: 1,
         display: "flex",
-        width: "99vw",
-        height: "10vh",
-        backgroundColor: "blanchedalmond",
+        // backgroundColor: "blanchedalmond",
       }}
-    ></div>
+    >
+      <div className="demo-logo" />
+
+      <Text
+        style={{
+          color: "white",
+        }}
+      >
+        Google Map details
+      </Text>
+    </div>
   );
 }
