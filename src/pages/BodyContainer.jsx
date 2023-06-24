@@ -1,9 +1,15 @@
 import React, { Component } from "react";
-import { Map, Marker, GoogleApiWrapper, Circle } from "google-maps-react";
+import { Map, GoogleApiWrapper, Circle } from "google-maps-react";
 import districts from "./districts.json";
 import { odishaBounds } from "./locations";
-
+import districtDetails from "./districtDetails.json";
+import {
+  AreaChartOutlined,
+  TeamOutlined,
+  DotChartOutlined,
+} from "@ant-design/icons";
 const YOUR_GOOGLE_API_KEY_GOES_HERE = "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo";
+import { Card, Image } from "antd";
 //sample API key AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo to be used lightly
 
 const LoadingContainer = (props) => <div>Fancy loading container!</div>;
@@ -12,27 +18,22 @@ class BodyContainer extends Component {
     super(props);
     this.onMarkerClick = this.onMarkerClick.bind(this);
     this.state = {
-      activeMarker: {},
-      selectedPlace: {},
-      showingInfoWindow: false,
+      selectedDistrict: {},
     };
   }
 
-  onMarkerClick = (props, marker) =>
+  onMarkerClick = (props, district) => {
+    console.log("props", props);
+    console.log("district", district);
+    const tempDistrictItem = districtDetails.find(
+      (item) => item.name === district.district
+    );
     this.setState({
-      activeMarker: marker,
-      selectedPlace: props,
-      showingInfoWindow: true,
+      selectedDistrict: tempDistrictItem,
     });
+  };
 
-  onMarkerClick = (props, marker) =>
-    this.setState({
-      activeMarker: marker,
-      selectedPlace: props,
-      showingInfoWindow: true,
-    });
   render() {
-    console.log("this.props", this.prop);
     const givenPosition = {
       // odisha co-ordinates
       //22.2132362,84.7417494
@@ -46,35 +47,89 @@ class BodyContainer extends Component {
     }
 
     return (
-      <div>
-        <Map
-          style={{ margin: 20, width: "70vw", height: "80vh" }}
-          google={this.props.google}
-          zoom={6}
-          initialCenter={givenPosition}
-          bounds={bounds}
-        >
-          {districts.map((district) => (
-            <Marker
-              title={district.district}
-              name={district.district}
-              position={{ lat: district.latitude, lng: district.longitudes }}
-              onClick={this.onMarkerClick}
-            />
-          ))}
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <div
+          style={{
+            display: "flex",
+            width: "90vw",
 
-          {districts.map((district) => (
-            <Circle
-              center={{ lat: district.latitude, lng: district.longitude }}
-              strokeColor={district.color}
-              strokeOpacity={0.8}
-              strokeWeight={0.8}
-              fillColor={district.color}
-              fillOpacity={0.35}
-              radius={district.population_density * 80}
-            />
-          ))}
-        </Map>
+            height: "80vh",
+          }}
+        >
+          <Map
+            style={{ /* margin: 20, */ width: "70vw", height: "80vh" }}
+            google={this.props.google}
+            zoom={6}
+            initialCenter={givenPosition}
+            bounds={bounds}
+          >
+            {/* {districts.map((district) => (
+              <Marker
+                title={district.district}
+                name={district.district}
+                position={{ lat: district.latitude, lng: district.longitudes }}
+                // onClick={this.onMarkerClick}
+              />
+            ))} */}
+
+            {districts.map((district) => (
+              <Circle
+                center={{ lat: district.latitude, lng: district.longitude }}
+                strokeColor={district.color}
+                strokeOpacity={0.8}
+                strokeWeight={0.8}
+                fillColor={district.color}
+                fillOpacity={0.35}
+                radius={district.population_density * 80}
+                onClick={(e) => this.onMarkerClick(e, district)}
+              />
+            ))}
+          </Map>
+        </div>
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+
+              float: "right",
+            }}
+          >
+            <Card
+              title={this.state.selectedDistrict?.name}
+              style={{
+                width: 300,
+                height: 300,
+              }}
+            >
+              {Object.keys(this.state.selectedDistrict).length > 0 ? (
+                <>
+                  <p>
+                    <TeamOutlined /> Population :{" "}
+                    {this.state.selectedDistrict.population}
+                  </p>
+                  <p>
+                    <AreaChartOutlined /> Area:{" "}
+                    {this.state.selectedDistrict.area}
+                  </p>
+                  <p>
+                    <DotChartOutlined />
+                    Rainfall: {this.state.selectedDistrict.averageRainfall}
+                  </p>
+                  {/* {this.state.selectedDistrict.image && (
+                    <Image
+                      width={200}
+                      src={this.state.selectedDistrict.image}
+                    />
+                  )} */}
+                </>
+              ) : null}
+            </Card>
+          </div>
+        </div>
       </div>
     );
   }
