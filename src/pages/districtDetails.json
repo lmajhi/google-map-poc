@@ -34,6 +34,13 @@
     "averageRainfall": 1446,
     "image": "https://en.wikipedia.org/wiki/File:India_Odisha_Balasore_district.svg"
   },
+
+  {
+    "name": "Boudh",
+    "population": 2317381,
+    "area": 3258,
+    "averageRainfall": 1446
+  },
   {
     "name": "Cuttack",
     "population": 2665838,
@@ -42,7 +49,7 @@
     "image": "https://en.wikipedia.org/wiki/File:India_Odisha_Cuttack_district.svg"
   },
   {
-    "name": "Deogarh",
+    "name": "Debagarh",
     "population": 312520,
     "area": 2781,
     "averageRainfall": 1738

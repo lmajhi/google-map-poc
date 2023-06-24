@@ -75,12 +75,12 @@ class BodyContainer extends Component {
             {districts.map((district) => (
               <Circle
                 center={{ lat: district.latitude, lng: district.longitude }}
-                strokeColor={district.color}
-                strokeOpacity={0.8}
+                strokeColor={"red"}
+                strokeOpacity={district.population_density / 1000}
                 strokeWeight={0.8}
-                fillColor={district.color}
-                fillOpacity={0.35}
-                radius={district.population_density * 80}
+                fillColor={"red"}
+                fillOpacity={district.population_density / 1000}
+                radius={28000}
                 onClick={(e) => this.onMarkerClick(e, district)}
               />
             ))}
@@ -113,7 +113,8 @@ class BodyContainer extends Component {
                   </p>
                   <p>
                     <AreaChartOutlined /> Area:{" "}
-                    {this.state.selectedDistrict.area}
+                    {this.state.selectedDistrict.area} (/km
+                    <span style={{ verticalAlign: "super" }}>2</span>)
                   </p>
                   <p>
                     <DotChartOutlined />
