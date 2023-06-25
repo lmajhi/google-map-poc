@@ -29,8 +29,6 @@ function App() {
         <Content className="site-layout">
           <BodyContainer />
         </Content>
-
-        <Footer style={{ textAlign: "center" }}>3 Muskeeters | 2023 </Footer>
       </Layout>
     </ConfigProvider>
   );
