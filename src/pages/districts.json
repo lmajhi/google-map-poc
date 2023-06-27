@@ -1,0 +1,205 @@
+[
+  {
+    "district": "Angul",
+    "latitude": 20.8476,
+    "longitude": 85.1322,
+    "population_density": 501,
+    "color": "#ff0000"
+  },
+  {
+    "district": "Balangir",
+    "latitude": 20.7073,
+    "longitude": 83.4955,
+    "population_density": 220,
+    "color": "#00ff00"
+  },
+  {
+    "district": "Balasore",
+    "latitude": 21.4927,
+    "longitude": 86.9338,
+    "population_density": 609,
+    "color": "#0000ff"
+  },
+  {
+    "district": "Bargarh",
+    "latitude": 21.34,
+    "longitude": 83.625,
+    "population_density": 401,
+    "color": "#ff00ff"
+  },
+  {
+    "district": "Bhadrak",
+    "latitude": 21.0657,
+    "longitude": 86.5169,
+    "population_density": 574,
+    "color": "#ffff00"
+  },
+  {
+    "district": "Boudh",
+    "latitude": 20.8507,
+    "longitude": 84.55,
+    "population_density": 157,
+    "color": "#00ffff"
+  },
+  {
+    "district": "Cuttack",
+    "latitude": 20.4625,
+    "longitude": 85.882,
+    "population_density": 1304,
+    "color": "#ff8000"
+  },
+  {
+    "district": "Debagarh",
+    "latitude": 21.501,
+    "longitude": 83.8115,
+    "population_density": 103,
+    "color": "#8000ff"
+  },
+  {
+    "district": "Dhenkanal",
+    "latitude": 20.6615,
+    "longitude": 85.5963,
+    "population_density": 341,
+    "color": "#008000"
+  },
+  {
+    "district": "Gajapati",
+    "latitude": 19.1771,
+    "longitude": 84.1377,
+    "population_density": 170,
+    "color": "#800080"
+  },
+  {
+    "district": "Ganjam",
+    "latitude": 19.3861,
+    "longitude": 84.9271,
+    "population_density": 356,
+    "color": "#008080"
+  },
+  {
+    "district": "Jagatsinghpur",
+    "latitude": 20.2585,
+    "longitude": 86.0924,
+    "population_density": 729,
+    "color": "#ff99cc"
+  },
+  {
+    "district": "Jajpur",
+    "latitude": 20.8449,
+    "longitude": 86.3425,
+    "population_density": 585,
+    "color": "#336699"
+  },
+  {
+    "district": "Jharsuguda",
+    "latitude": 21.8709,
+    "longitude": 84.0085,
+    "population_density": 391,
+    "color": "#993333"
+  },
+  {
+    "district": "Kalahandi",
+    "latitude": 19.839,
+    "longitude": 83.16,
+    "population_density": 209,
+    "color": "#66ffcc"
+  },
+  {
+    "district": "Kandhamal",
+    "latitude": 20.251,
+    "longitude": 84.1547,
+    "population_density": 146,
+    "color": "#cc99ff"
+  },
+  {
+    "district": "Kendrapara",
+    "latitude": 20.5003,
+    "longitude": 86.416,
+    "population_density": 542,
+    "color": "#339966"
+  },
+  {
+    "district": "Kendujhar",
+    "latitude": 21.6352,
+    "longitude": 85.3792,
+    "population_density": 212,
+    "color": "#996633"
+  },
+  {
+    "district": "Khordha",
+    "latitude": 20.1444,
+    "longitude": 85.7118,
+    "population_density": 749,
+    "color": "#669933"
+  },
+  {
+    "district": "Koraput",
+    "latitude": 18.82,
+    "longitude": 82.71,
+    "population_density": 166,
+    "color": "#ff3366"
+  },
+  {
+    "district": "Malkangiri",
+    "latitude": 18.37,
+    "longitude": 81.87,
+    "population_density": 106,
+    "color": "#3366cc"
+  },
+  {
+    "district": "Mayurbhanj",
+    "latitude": 21.7144,
+    "longitude": 86.7366,
+    "population_density": 269,
+    "color": "#663399"
+  },
+  {
+    "district": "Nabarangpur",
+    "latitude": 19.2418,
+    "longitude": 82.5476,
+    "population_density": 197,
+    "color": "#cc6600"
+  },
+  {
+    "district": "Nayagarh",
+    "latitude": 20.124,
+    "longitude": 85.1004,
+    "population_density": 366,
+    "color": "#0066cc"
+  },
+  {
+    "district": "Nuapada",
+    "latitude": 20.8344,
+    "longitude": 82.5358,
+    "population_density": 169,
+    "color": "#cc0066"
+  },
+  {
+    "district": "Puri",
+    "latitude": 19.8139,
+    "longitude": 85.8315,
+    "population_density": 580,
+    "color": "#006666"
+  },
+  {
+    "district": "Rayagada",
+    "latitude": 19.1732,
+    "longitude": 83.4168,
+    "population_density": 198,
+    "color": "#660066"
+  },
+  {
+    "district": "Sambalpur",
+    "latitude": 21.4704,
+    "longitude": 83.9701,
+    "population_density": 261,
+    "color": "#666600"
+  },
+  {
+    "district": "Sundargarh",
+    "latitude": 22.1214,
+    "longitude": 84.0227,
+    "population_density": 269,
+    "color": "#006633"
+  }
+]

@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+
+    commands:
+      - echo installing nodejs...
+      
+  pre_build:
+    commands:
+      - echo installing dependencies...
+      - npm i -g @angular/cli
+      - npm install
+  build:
+    commands:
+      - echo testing...
+      # - echo building...
+      - ng build
+  artifacts:
+  files:
+    - "**/*"
+  discard-paths: no
+  base-directory: dist/weathermap_app

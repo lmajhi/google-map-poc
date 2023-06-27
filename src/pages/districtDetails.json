@@ -1,0 +1,190 @@
+[
+  {
+    "name": "Angul",
+    "population": 1271702,
+    "area": 6232,
+    "averageRainfall": 1552,
+    "image": "https://en.wikipedia.org/wiki/File:India_Odisha_Angul_district.svg"
+  },
+  {
+    "name": "Balangir",
+    "population": 1648574,
+    "area": 6575,
+    "averageRainfall": 1264,
+    "image": "https://en.wikipedia.org/wiki/File:India_Odisha_Balangir_district.svg"
+  },
+  {
+    "name": "Bargarh",
+    "population": 1478835,
+    "area": 5837,
+    "averageRainfall": 1152,
+    "image": "https://en.wikipedia.org/wiki/File:India_Odisha_Bargarh_district.svg"
+  },
+  {
+    "name": "Bhadrak",
+    "population": 1501432,
+    "area": 2501,
+    "averageRainfall": 1379,
+    "image": "https://en.wikipedia.org/wiki/File:India_Odisha_Bhadrak_district.svg"
+  },
+  {
+    "name": "Balasore",
+    "population": 2317381,
+    "area": 3258,
+    "averageRainfall": 1446,
+    "image": "https://en.wikipedia.org/wiki/File:India_Odisha_Balasore_district.svg"
+  },
+
+  {
+    "name": "Boudh",
+    "population": 2317381,
+    "area": 3258,
+    "averageRainfall": 1446
+  },
+  {
+    "name": "Cuttack",
+    "population": 2665838,
+    "area": 3932,
+    "averageRainfall": 1441,
+    "image": "https://en.wikipedia.org/wiki/File:India_Odisha_Cuttack_district.svg"
+  },
+  {
+    "name": "Debagarh",
+    "population": 312520,
+    "area": 2781,
+    "averageRainfall": 1738
+  },
+  {
+    "name": "Dhenkanal",
+    "population": 1193375,
+    "area": 4456,
+    "averageRainfall": 1608
+  },
+  {
+    "name": "Gajapati",
+    "population": 577817,
+    "area": 4326,
+    "averageRainfall": 1555
+  },
+  {
+    "name": "Ganjam",
+    "population": 3529036,
+    "area": 8206,
+    "averageRainfall": 1247
+  },
+  {
+    "name": "Jagatsinghpur",
+    "population": 1241526,
+    "area": 1668,
+    "averageRainfall": 1469
+  },
+  {
+    "name": "Jajpur",
+    "population": 1827998,
+    "area": 2898,
+    "averageRainfall": 1523
+  },
+  {
+    "name": "Jharsuguda",
+    "population": 579499,
+    "area": 2110,
+    "averageRainfall": 1480,
+    "image": "https://en.wikipedia.org/wiki/File:Basin_of_IB_river_my_fav12.jpg"
+  },
+  {
+    "name": "Kalahandi",
+    "population": 1573054,
+    "area": 7920,
+    "averageRainfall": 1449
+  },
+  {
+    "name": "Kandhamal",
+    "population": 731952,
+    "area": 8020,
+    "averageRainfall": 1642
+  },
+  {
+    "name": "Kendrapara",
+    "population": 1439891,
+    "area": 2644,
+    "averageRainfall": 1527
+  },
+  {
+    "name": "Kendujhar",
+    "population": 1937022,
+    "area": 8303,
+    "averageRainfall": 1488
+  },
+  {
+    "name": "Khordha",
+    "population": 2428562,
+    "area": 2887,
+    "averageRainfall": 1437
+  },
+  {
+    "name": "Koraput",
+    "population": 1373074,
+    "area": 8879,
+    "averageRainfall": 1692
+  },
+  {
+    "name": "Malkangiri",
+    "population": 612727,
+    "area": 5794,
+    "averageRainfall": 1654
+  },
+  {
+    "name": "Mayurbhanj",
+    "population": 2513895,
+    "area": 10418,
+    "averageRainfall": 1589
+  },
+  {
+    "name": "Nabarangpur",
+    "population": 1249459,
+    "area": 5295,
+    "averageRainfall": 1475
+  },
+  {
+    "name": "Nayagarh",
+    "population": 962215,
+    "area": 3890,
+    "averageRainfall": 1517
+  },
+  {
+    "name": "Nuapada",
+    "population": 610382,
+    "area": 3855,
+    "averageRainfall": 1438
+  },
+  {
+    "name": "Puri",
+    "population": 1694574,
+    "area": 3051,
+    "averageRainfall": 1520
+  },
+  {
+    "name": "Rayagada",
+    "population": 961959,
+    "area": 7079,
+    "averageRainfall": 1687
+  },
+  {
+    "name": "Sambalpur",
+    "population": 1044417,
+    "area": 6704,
+    "averageRainfall": 1431
+  },
+  {
+    "name": "Sonepur",
+    "population": 645198,
+    "area": 2282,
+    "averageRainfall": 1584
+  },
+  {
+    "name": "Sundargarh",
+    "population": 2704504,
+    "area": 9712,
+    "averageRainfall": 1412
+  }
+]
