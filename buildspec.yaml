@@ -10,12 +10,12 @@ phases:
   pre_build:
     commands:
       - echo installing dependencies...
-      - npm i -g @angular/cli
       - npm install
 
   build:
     commands:
       - echo testing...
+      - npm run build
       # - echo building...
       # - ng build
 
