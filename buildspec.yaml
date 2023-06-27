@@ -4,21 +4,22 @@ phases:
   install:
     runtime-versions:
       nodejs: 16
-
     commands:
       - echo installing nodejs...
-      
+
   pre_build:
     commands:
       - echo installing dependencies...
       - npm i -g @angular/cli
       - npm install
+
   build:
     commands:
       - echo testing...
       # - echo building...
       - ng build
-  artifacts:
+
+artifacts:
   files:
     - "**/*"
   discard-paths: no
