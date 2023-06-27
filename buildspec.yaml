@@ -23,4 +23,4 @@ artifacts:
   files:
     - "**/*"
   discard-paths: no
-  base-directory: dist/weathermap_app
+  base-directory: dist/weathermapapp
