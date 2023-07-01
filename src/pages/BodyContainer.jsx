@@ -1,10 +1,28 @@
 import React, { Component } from "react";
 import { Map, GoogleApiWrapper, Circle, Marker } from "google-maps-react";
 import dayjs from "dayjs";
-
+import {
+  DownOutlined,
+  CloudFilled,
+  EnvironmentFilled,
+  InfoCircleFilled,
+} from "@ant-design/icons";
+<EnvironmentFilled />;
 const YOUR_GOOGLE_API_KEY_GOES_HERE = "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo";
-import { Card, Image, DatePicker, Col, Row, Space, Skeleton } from "antd";
+import {
+  Card,
+  Image,
+  DatePicker,
+  Col,
+  Row,
+  Space,
+  Skeleton,
+  Typography,
+  Dropdown,
+} from "antd";
 import restClient from "../utils/restClient";
+
+const { Title } = Typography;
 //sample API key AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo to be used lightly
 
 const todaysDate = () => {
@@ -12,6 +30,16 @@ const todaysDate = () => {
 
   return currentDate;
 };
+
+const formatDateinYYYYMMDD = (dateString) =>
+  dayjs(dateString).format("YYYY-MM-DD");
+const items = [
+  {
+    key: "1",
+    label: "flood",
+  },
+];
+
 const LoadingContainer = (props) => (
   <Row style={{ height: "84vh", marginTop: 20 }}>
     <Col span={18} style={{ justifyContent: "center", alignItems: "center" }}>
@@ -26,12 +54,14 @@ class BodyContainer extends Component {
     this.onMapClick = this.onMapClick.bind(this);
     this.onFromDateChange = this.onFromDateChange.bind(this);
     this.onToDateChange = this.onToDateChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
 
     this.state = {
       selectLatLong: {},
       apiResponse: {},
       toDate: todaysDate(),
       fromDate: todaysDate(),
+      indicator: "",
     };
   }
   onFromDateChange = (date, dateString) => {
@@ -53,12 +83,12 @@ class BodyContainer extends Component {
       },
     });
     const response = await restClient.post("/mapIndicator", {
-      lat: more.latLng.lat(),
-      long: more.latLng.lng(),
+      lat: this.state.selectLatLong.lat,
+      long: this.state.selectLatLong.lng,
       radius: 1000,
-      from_date: this.state.fromDate,
-      to_date: this.state.toDate,
-      indicator: "flood",
+      from_date: formatDateinYYYYMMDD(this.state.fromDate),
+      to_date: formatDateinYYYYMMDD(this.state.toDate),
+      indicator: this.state.indicator,
     });
     /**
      * { "status": true, "latitude": 12.991630005, "longitude": 77.5088097141, "floodIndicator": "1.0000" }
@@ -66,7 +96,15 @@ class BodyContainer extends Component {
     this.setState({
       ...this.state,
 
-      apiResponse: response.data,
+      apiResponse: { ...response.data, indicator: this.state.indicator },
+    });
+  };
+
+  handleClick = ({ key }) => {
+    const filteredItem = items.find((item) => item.key === key);
+
+    this.setState({
+      indicator: filteredItem.label,
     });
   };
 
@@ -79,31 +117,48 @@ class BodyContainer extends Component {
 
     return (
       <>
-        <Row style={{ height: "84vh", marginTop: 20 }}>
+        <Row style={{ height: "88vh", marginTop: 20 }}>
           <Col span={18}>
-            <Space direction="horizontal">
-              From:{" "}
-              <DatePicker
-                defaultValue={this.state.fromDate}
-                onChange={this.onFromDateChange}
-              />
-              <p></p>
-              To:{" "}
-              <DatePicker
-                defaultValue={this.state.toDate}
-                onChange={this.onToDateChange}
-              />
-            </Space>
+            <div style={{ marginLeft: 20 }}>
+              <Space direction="horizontal">
+                From:{" "}
+                <DatePicker
+                  defaultValue={this.state.fromDate}
+                  onChange={this.onFromDateChange}
+                />
+                <p></p>
+                To:{" "}
+                <DatePicker
+                  defaultValue={this.state.toDate}
+                  onChange={this.onToDateChange}
+                />
+                <p></p>
+                Indicator :{" "}
+                <Dropdown
+                  menu={{
+                    items,
+                    onClick: this.handleClick,
+                  }}
+                >
+                  <a onClick={(e) => e.preventDefault()}>
+                    <Space>
+                      {this.state.indicator || "Select"}
+                      <DownOutlined />
+                    </Space>
+                  </a>
+                </Dropdown>
+              </Space>
 
-            <Map
-              style={{ width: "60vw", height: "60vh", marginTop: 20 }}
-              google={this.props.google}
-              zoom={11}
-              initialCenter={givenPosition}
-              onClick={this.onMapClick}
-            >
-              <Marker position={this.state.selectLatLong} />
-            </Map>
+              <Map
+                style={{ width: "60vw", height: "60vh", marginTop: 20 }}
+                google={this.props.google}
+                zoom={11}
+                initialCenter={givenPosition}
+                onClick={this.onMapClick}
+              >
+                <Marker position={this.state.selectLatLong} />
+              </Map>
+            </div>
           </Col>
           <Col span={6}>
             <Card
@@ -113,9 +168,21 @@ class BodyContainer extends Component {
                 height: 300,
               }}
             >
-              {Object.keys(this.state.apiResponse).length > 0 ? (
+              {this.state.apiResponse.status ? (
                 <>
-                  <p>{JSON.stringify(this.state.apiResponse, null, 2)}</p>
+                  <p>
+                    <EnvironmentFilled style={{ color: "#ea4335" }} />{" "}
+                    {this.state.apiResponse.latitude},{" "}
+                    {this.state.apiResponse.longitude}
+                  </p>
+                  <p>
+                    <CloudFilled style={{ color: "#9AF3FF" }} /> Indicator :{" "}
+                    {this.state.apiResponse.indicator}{" "}
+                  </p>
+                  <p>
+                    <InfoCircleFilled style={{ color: "#ffcc00" }} /> Indicator
+                    Value: {this.state.apiResponse.floodIndicator}
+                  </p>
                 </>
               ) : null}
             </Card>
