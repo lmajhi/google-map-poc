@@ -62,6 +62,7 @@ class BodyContainer extends Component {
       toDate: todaysDate(),
       fromDate: todaysDate(),
       indicator: "",
+      isloading: false,
     };
   }
   onFromDateChange = (date, dateString) => {
@@ -77,6 +78,8 @@ class BodyContainer extends Component {
   };
   onMapClick = async (props, someMore, more) => {
     this.setState({
+      ...this.state,
+      isloading: true,
       selectLatLong: {
         lat: more.latLng.lat(),
         lng: more.latLng.lng(),
@@ -95,7 +98,7 @@ class BodyContainer extends Component {
      */
     this.setState({
       ...this.state,
-
+      isloading: false,
       apiResponse: { ...response.data, indicator: this.state.indicator },
     });
   };
@@ -168,7 +171,7 @@ class BodyContainer extends Component {
                 height: 300,
               }}
             >
-              {this.state.apiResponse.status ? (
+              {this.state.apiResponse.status && !this.state.isloading ? (
                 <>
                   <p>
                     <EnvironmentFilled style={{ color: "#ea4335" }} />{" "}
@@ -185,6 +188,7 @@ class BodyContainer extends Component {
                   </p>
                 </>
               ) : null}
+              {this.state.isloading && <Skeleton />}
             </Card>
           </Col>
         </Row>
