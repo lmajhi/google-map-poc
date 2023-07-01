@@ -3,8 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 18
-
+      nodejs: 16
     commands:
       - echo installing nodejs...
 
@@ -12,21 +11,34 @@ phases:
     commands:
       - echo installing dependencies...
       - npm install
+
   build:
     commands:
       - echo testing...
-      # - echo building...
       - npm run build
+      # - echo building...
+      # - ng build
+
   post_build:
     commands:
-      - aws cloudfront create-invalidation --distribution-id E1YQ3N9PAON0EL --paths '/*'
+      - aws cloudfront create-invalidation --distribution-id E1GRHHHPE8CGOS --paths '/*'
+
 artifacts:
   files:
-    - "dist/*"
+    - "**/*"
   discard-paths: no
+  base-directory: dist
 
+cache:
+  paths:
+    - '/root/.npm/**/*'
 
-CloudShell
-Feedback
-Language
-© 202
+# Add this section to set CloudFront default root object
+# Replace 'E1GRHHHPE8CGOS' with your CloudFront distribution ID
+# Replace 'index.html' with the desired default root object
+# If using a subdirectory, specify the path, e.g., 'subdirectory/index.html'
+# This configuration will make CloudFront serve 'index.html' for the root path '/'
+# If 'index.html' doesn't exist, it will return a 404 error
+metadata:
+  aws:cloudformation:enable-cloudfront: 'true'
+  aws:cloudfront:index-document: 'index.html'
