@@ -11,7 +11,6 @@ import {
 const YOUR_GOOGLE_API_KEY_GOES_HERE = "AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo";
 import {
   Card,
-  Image,
   DatePicker,
   Col,
   Row,
@@ -19,6 +18,7 @@ import {
   Skeleton,
   Typography,
   Dropdown,
+  Empty,
 } from "antd";
 import restClient from "../utils/restClient";
 
@@ -171,6 +171,11 @@ class BodyContainer extends Component {
                 height: 300,
               }}
             >
+              {" "}
+              {this.state.apiResponse.status === false &&
+                !this.state.isloading && (
+                  <Empty description={"No data found."} />
+                )}
               {this.state.apiResponse.status && !this.state.isloading ? (
                 <>
                   <p>
