@@ -19,10 +19,12 @@ import {
   Typography,
   Dropdown,
   Empty,
+  Input,
 } from "antd";
 import restClient from "../utils/restClient";
 
 const { Title } = Typography;
+const { Search } = Input;
 //sample API key AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo to be used lightly
 
 const todaysDate = () => {
@@ -55,6 +57,7 @@ class BodyContainer extends Component {
     this.onFromDateChange = this.onFromDateChange.bind(this);
     this.onToDateChange = this.onToDateChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.getLatLngFromName = this.getLatLngFromName.bind(this);
 
     this.state = {
       selectLatLong: {},
@@ -63,6 +66,7 @@ class BodyContainer extends Component {
       fromDate: todaysDate(),
       indicator: "",
       isloading: false,
+      userLocation: "",
     };
   }
   onFromDateChange = (date, dateString) => {
@@ -111,6 +115,21 @@ class BodyContainer extends Component {
     });
   };
 
+  getLatLngFromName = (enteredText) => {
+    // console.log("this.props.google", this.props.google);
+
+    geocoder
+      .geocode({ address: enteredText })
+      .then((response) => {
+        console.log("response", response);
+        /**
+         * 1. get the latitude and logitide from here at save in state
+         * 2. point this position on the map.
+         * 3. Show the relevant info on the side card.
+         */
+      })
+      .catch((err) => console.error(err));
+  };
   render() {
     const givenPosition = {
       //bengaluru https://www.google.com/maps/place/Bengaluru,+Karnataka/@12.9537902,77.3012721
@@ -150,6 +169,13 @@ class BodyContainer extends Component {
                     </Space>
                   </a>
                 </Dropdown>
+                <Search
+                  placeholder="input search text"
+                  allowClear
+                  enterButton="Search"
+                  // size="large"
+                  onSearch={this.getLatLngFromName}
+                />
               </Space>
 
               <Map

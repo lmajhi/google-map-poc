@@ -17,7 +17,7 @@ export default function AppHeader() {
           color: "white",
         }}
       >
-        Google Map details
+        Weatherman
       </Text>
     </div>
   );
