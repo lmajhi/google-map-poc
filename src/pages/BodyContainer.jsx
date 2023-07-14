@@ -184,7 +184,7 @@ class BodyContainer extends Component {
               </Space>
 
               <Map
-                style={{ width: "60vw", height: "60vh", marginTop: 20 }}
+                style={{ width: "70vw", height: "75vh", marginTop: 20 }}
                 google={this.props.google}
                 zoom={11}
                 initialCenter={givenPosition}
@@ -202,12 +202,16 @@ class BodyContainer extends Component {
               </Map>
             </div>
           </Col>
-          <Col>
+          <Col
+            style={{
+              marginTop: 50,
+            }}
+          >
             <Card
               title={this.state.selectedDistrict?.name}
               style={{
                 width: 300,
-                height: 300,
+                height: 180,
               }}
             >
               {" "}
