@@ -5,7 +5,7 @@ export const calculatePolyGonQuad = (lat, lng, radius = 5) => {
   // Convert radius from km to meters
   radius *= 1;
 
-  const angles = [0, 90, 180, 270]; // Angles at 0, 90, 180, and 270 degrees
+  const angles = [45, 135, 225, 315]; // Angles at 45, 135, 225, 315 degrees
 
   angles.forEach((angle) => {
     // Convert angle to radians
