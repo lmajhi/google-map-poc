@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Map, GoogleApiWrapper, Circle, Marker } from "google-maps-react";
+import { Map, GoogleApiWrapper, Marker, Polygon } from "google-maps-react";
 import dayjs from "dayjs";
 import {
   DownOutlined,
@@ -22,7 +22,7 @@ import {
   Input,
 } from "antd";
 import restClient from "../utils/restClient";
-
+import { calculatePolyGonQuad } from "../utils/mapUtils";
 const { Title } = Typography;
 const { Search } = Input;
 //sample API key AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo to be used lightly
@@ -67,6 +67,7 @@ class BodyContainer extends Component {
       indicator: "",
       isloading: false,
       userLocation: "",
+      selectedPolygonQuad: [],
     };
   }
   onFromDateChange = (date, dateString) => {
@@ -88,6 +89,10 @@ class BodyContainer extends Component {
         lat: more.latLng.lat(),
         lng: more.latLng.lng(),
       },
+      selectedPolygonQuad: calculatePolyGonQuad(
+        more.latLng.lat(),
+        more.latLng.lng()
+      ),
     });
     const response = await restClient.post("/mapIndicator", {
       lat: this.state.selectLatLong.lat,
@@ -186,10 +191,18 @@ class BodyContainer extends Component {
                 onClick={this.onMapClick}
               >
                 <Marker position={this.state.selectLatLong} />
+                <Polygon
+                  paths={this.state.selectedPolygonQuad}
+                  strokeColor="#0000FF"
+                  strokeOpacity={0.8}
+                  strokeWeight={2}
+                  fillColor="#0000FF"
+                  fillOpacity={0.35}
+                />
               </Map>
             </div>
           </Col>
-          <Col span={6}>
+          <Col>
             <Card
               title={this.state.selectedDistrict?.name}
               style={{
