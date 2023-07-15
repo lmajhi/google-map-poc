@@ -60,6 +60,8 @@ class BodyContainer extends Component {
     this.getLatLngFromName = this.getLatLngFromName.bind(this);
 
     this.state = {
+      mapCentre: {},
+      mapZoomLevel: 11,
       selectLatLong: {},
       apiResponse: {},
       toDate: todaysDate(),
@@ -93,6 +95,11 @@ class BodyContainer extends Component {
         more.latLng.lat(),
         more.latLng.lng()
       ),
+      mapCentre: {
+        lat: more.latLng.lat(),
+        lng: more.latLng.lng(),
+      },
+      mapZoomLevel: 14,
     });
     const response = await restClient.post("/mapIndicator", {
       lat: this.state.selectLatLong.lat,
@@ -135,6 +142,15 @@ class BodyContainer extends Component {
       })
       .catch((err) => console.error(err));
   };
+  // componentDidMount() {
+  //   this.setState({
+  //     ...this.state,
+  //     mapCentre: {
+  //       lat: 12.945796668,
+  //       lng: 77.6949208401,
+  //     },
+  //   });
+  // }
   render() {
     const givenPosition = {
       //bengaluru https://www.google.com/maps/place/Bengaluru,+Karnataka/@12.9537902,77.3012721
@@ -186,7 +202,8 @@ class BodyContainer extends Component {
               <Map
                 style={{ width: "70vw", height: "75vh", marginTop: 20 }}
                 google={this.props.google}
-                zoom={11}
+                zoom={this.state.mapZoomLevel}
+                center={this.state.mapCentre}
                 initialCenter={givenPosition}
                 onClick={this.onMapClick}
               >
